@@ -1,0 +1,4 @@
+interface:
+  display_name: "Grill What Matters"
+  short_description: "Grill costly decisions, defer reversible details"
+  default_prompt: "Use $grill-what-matters to pressure-test this plan without wasting time on cheap-to-change details."
