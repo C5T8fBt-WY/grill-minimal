@@ -17,9 +17,27 @@ The skill sorts unresolved decisions into four treatments:
 - **Defer** until the last responsible moment when no current commitment
   depends on it.
 
-It asks one question at a time, includes a recommended answer, discovers hidden
-prerequisites implied by accepted decisions, and stops when the remaining
-ambiguity is cheap to change or better resolved later.
+It first asks whether the user prefers one question per turn or small batches.
+Every substantive turn shows resolved decisions and currently known remaining
+work. The skill includes recommended answers, discovers hidden prerequisites
+implied by accepted decisions, and stops when the remaining ambiguity is cheap
+to change or better resolved later.
+
+## Interaction and progress
+
+Single-question mode preserves dependency order. Batch mode groups no more than
+three independent high-gravity questions; questions whose answers affect one
+another remain sequential. The user can switch modes during the interview.
+
+Progress is deliberately bounded rather than presented as a fake percentage:
+
+```text
+Progress: 2 resolved · 1 known ask-now · 3 deferred or defaulted · mode: single
+```
+
+The known count can change when an answer exposes a previously hidden
+prerequisite. The skill calls out that change instead of silently extending the
+session.
 
 ## Decision records
 

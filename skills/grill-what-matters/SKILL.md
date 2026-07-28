@@ -13,6 +13,15 @@ Ask a question now only when the expected cost avoided by answering now exceeds 
 
 Treat uncertainty alone as insufficient. Prefer questions whose answers affect a commitment that is difficult to reverse, unlock several downstream decisions, change the plan materially, or must be decided before better evidence will arrive.
 
+## Set the interaction mode
+
+If the user has not already stated a preference, make the first turn a choice between:
+
+- **Single:** ask one decision question per turn. Recommend this when decisions depend on earlier answers.
+- **Batch:** ask a small batch of up to three independent decision questions per turn.
+
+Treat this as session control, not as a decision-inventory item. Tell the user that progress will show the currently known remaining work. Respect a mode change at any time. In batch mode, never group questions when one answer may eliminate or reshape another; ask the prerequisite alone.
+
 ## Build the decision map
 
 Before asking anything:
@@ -51,20 +60,29 @@ Treat every proposed default as unconfirmed until the user approves the final su
 
 Use a Markdown table as the portable review format at the confirmation boundary, with columns for ID, treatment, decision, answer or status, and rationale or revisit trigger. Model context is working state, never the durable source of truth. Do not create a database or write a file merely to run the interview. Persist the confirmed inventory only when the original request names a target artifact or the user explicitly asks for persistence; prefer an existing plan, specification, ADR, or decision log over a new file. State whether the inventory exists only in the conversation or at a durable path.
 
+## Show bounded progress
+
+After the interaction mode is selected, begin every interview turn with one compact status line:
+
+`Progress: <resolved> resolved · <known ask-now> known ask-now · <deferred/defaulted> deferred or defaulted · mode: <single|batch>`
+
+Count only decisions currently visible in the map. Do not claim a fixed total, percentage, or time estimate because accepted answers may reveal latent prerequisites. When the known count grows, say briefly what new dependency appeared. At completion, show `Progress: complete` with the final counts.
+
 ## Run the interview
 
-1. Select the highest-gravity unresolved decision. Resolve prerequisite decisions before dependent ones.
-2. Ask exactly one question at a time and wait for the answer.
-3. For each question, provide:
+1. Show the progress line.
+2. Select the highest-gravity unresolved decision. Resolve prerequisite decisions before dependent ones.
+3. In single mode, ask exactly one decision question and wait. In batch mode, ask up to three independent decision questions and wait for the batch response.
+4. For each question, provide:
    - the decision in plain language;
    - the recommended answer and brief rationale;
    - why it must be resolved now, including the rework or lock-in it prevents;
    - concise, meaningfully different options when useful.
-4. Accept a direct answer, the recommendation, or a user-provided alternative.
-5. Update the decision map after every answer. A response may eliminate several later questions.
-6. Derive new prerequisites from every accepted answer. For example, a data-loss guarantee may force a canonical data representation decision even if the user never mentioned one.
-7. Challenge contradictions and fragile assumptions, but do not reopen settled decisions without new evidence.
-8. Do not implement the plan until the user confirms shared understanding.
+5. Accept a direct answer, the recommendation, or a user-provided alternative. In batch mode, map each response to its stable decision ID and clarify only unanswered or ambiguous items.
+6. Update the decision map after every answer. A response may eliminate several later questions.
+7. Derive new prerequisites from every accepted answer. For example, a data-loss guarantee may force a canonical data representation decision even if the user never mentioned one.
+8. Challenge contradictions and fragile assumptions, but do not reopen settled decisions without new evidence.
+9. Do not implement the plan until the user confirms shared understanding.
 
 Keep the tone direct and collaborative. “Relentless” describes the depth applied to consequential decisions, not the number of questions.
 
