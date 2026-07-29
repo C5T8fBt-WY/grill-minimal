@@ -38,3 +38,8 @@ The final review is a human-correctable Markdown table with stable decision
 IDs. Unless durable storage is requested, it remains in the conversation. When
 requested, the skill prefers an existing plan, specification, ADR, or decision
 log; it does not require a database.
+
+## Acknowledgment
+
+Inspired by Matt Pocock's
+[`grill-me`](https://github.com/mattpocock/skills/tree/main/skills/productivity/grill-me).
