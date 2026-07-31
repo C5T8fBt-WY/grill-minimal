@@ -13,14 +13,14 @@ Ask a question now only when the expected cost avoided by answering now exceeds 
 
 Treat uncertainty alone as insufficient. Prefer questions whose answers affect a commitment that is difficult to reverse, unlock several downstream decisions, change the plan materially, or must be decided before better evidence will arrive.
 
-## Set the interaction mode
+## Group questions adaptively
 
-If the user has not already stated a preference, make the first turn a choice between:
+Do not ask the user to choose between single-question and batch modes. Determine the grouping from the decision dependencies on every turn:
 
-- **Single:** ask one decision question per turn. Recommend this when decisions depend on earlier answers.
-- **Batch:** ask a small batch of up to three independent decision questions per turn.
+- Ask up to three currently ready **Ask now** decisions together when they are independent: none of their answers can eliminate, constrain, or reshape another question in the batch.
+- Ask one question alone when it is the only currently ready decision. This includes a prerequisite whose answer must be known before dependent questions can be formed.
 
-Treat this as session control, not as a decision-inventory item. Tell the user that progress will show the currently known remaining work. Respect a mode change at any time. In batch mode, never group questions when one answer may eliminate or reshape another; ask the prerequisite alone.
+Honor an explicit user pacing preference, but do not request one. Never hold back a ready independent question merely to preserve a single-question rhythm, and never include a dependent question merely to fill a batch.
 
 ## Build the decision map
 
@@ -62,23 +62,23 @@ Use a Markdown table as the portable review format at the confirmation boundary,
 
 ## Show bounded progress
 
-After the interaction mode is selected, begin every interview turn with one compact status line:
+Begin every interview turn with one compact status line:
 
-`Progress: <resolved> resolved · <known ask-now> known ask-now · <deferred/defaulted> deferred or defaulted · mode: <single|batch>`
+`Progress: <resolved> resolved · <known ask-now> known ask-now · <deferred/defaulted> deferred or defaulted`
 
 Count only decisions currently visible in the map. Do not claim a fixed total, percentage, or time estimate because accepted answers may reveal latent prerequisites. When the known count grows, say briefly what new dependency appeared. At completion, show `Progress: complete` with the final counts.
 
 ## Run the interview
 
 1. Show the progress line.
-2. Select the highest-gravity unresolved decision. Resolve prerequisite decisions before dependent ones.
-3. In single mode, ask exactly one decision question and wait. In batch mode, ask up to three independent decision questions and wait for the batch response.
+2. Find the ready frontier: unresolved **Ask now** decisions whose prerequisites are resolved. Order it by gravity.
+3. Ask up to three mutually independent decisions from the ready frontier. If only one decision is ready, ask it alone and wait before forming dependent questions.
 4. For each question, provide:
    - the decision in plain language;
    - the recommended answer and brief rationale;
    - why it must be resolved now, including the rework or lock-in it prevents;
    - concise, meaningfully different options when useful.
-5. Accept a direct answer, the recommendation, or a user-provided alternative. In batch mode, map each response to its stable decision ID and clarify only unanswered or ambiguous items.
+5. Accept a direct answer, the recommendation, or a user-provided alternative. When asking more than one question, map each response to its stable decision ID and clarify only unanswered or ambiguous items.
 6. Update the decision map after every answer. A response may eliminate several later questions.
 7. Derive new prerequisites from every accepted answer. For example, a data-loss guarantee may force a canonical data representation decision even if the user never mentioned one.
 8. Challenge contradictions and fragile assumptions, but do not reopen settled decisions without new evidence.

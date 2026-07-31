@@ -25,9 +25,10 @@ The skill sorts unresolved decisions into four treatments:
 - **Propose a default** when the choice is easy to reverse.
 - **Defer** when no current commitment depends on it.
 
-Before the interview, the user chooses one question per turn or batches of up
-to three independent questions. Each turn shows bounded progress without
-pretending the total cannot change as hidden prerequisites emerge.
+The skill automatically batches up to three independent questions and asks a
+prerequisite alone when later questions depend on its answer. Each turn shows
+bounded progress without pretending the total cannot change as hidden
+prerequisites emerge.
 
 The skill stops when the remaining ambiguity is cheap to change or better
 resolved later.
