@@ -36,6 +36,7 @@ Before asking anything:
    - **Delay value:** whether waiting will produce better evidence before the first dependent commitment.
    - **Clarification cost:** user effort, session time, and delay caused by asking.
 4. Reassess apparent one-way doors. Look for a pilot, feature flag, abstraction, versioning, time box, or staged rollout that makes them cheaper to reverse.
+5. Estimate the likely question budget for the whole interview. Count every foreseeable **Ask now** decision, including blocked decisions, latent prerequisites, and branch-specific questions likely to become necessary. Do not count proposed defaults, deferrals, or de-risking actions unless they are likely to require a later user decision.
 
 Do not invent numeric scores or thresholds when the context does not support them. Use relative judgment and explain close calls.
 
@@ -66,9 +67,11 @@ Use a Markdown table as the portable review format at the confirmation boundary,
 
 Begin every interview turn with one compact status line:
 
-`Progress: <resolved> resolved · <known ask-now> known ask-now · <deferred/defaulted> deferred or defaulted`
+`Progress: <resolved> resolved · <ready> ready now · <potential-later> potential later · estimated total: <estimated-total>`
 
-Count only decisions currently visible in the map. Do not claim a fixed total, percentage, or time estimate because accepted answers may reveal latent prerequisites. When the known count grows, say briefly what new dependency appeared. At completion, show `Progress: complete` with the final counts.
+Use a single approximate count such as `≈3` or a narrow range such as `2–4` for potential-later and estimated-total when branches make precision dishonest. Carry the estimate forward across turns: moving a question from potential-later to ready must not increase the total. Never show zero remaining merely because the ready frontier is empty while blocked, research-dependent, or latent questions remain likely.
+
+Revise the estimated total only when new evidence reveals or eliminates material decision paths. On the same status line or immediately below it, state the previous estimate, the new estimate, and the reason. At completion, show `Progress: complete · <actual-total> questions resolved`.
 
 ## Run the interview
 

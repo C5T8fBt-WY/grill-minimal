@@ -27,8 +27,8 @@ The skill sorts unresolved decisions into four treatments:
 
 The skill automatically batches every currently independent question and asks
 a prerequisite alone when later questions depend on its answer. Each turn
-shows bounded progress without pretending the total cannot change as hidden
-prerequisites emerge.
+shows ready questions plus an estimate of potential later questions, with any
+revision explained instead of appearing as a surprise extension.
 
 The skill stops when the remaining ambiguity is cheap to change or better
 resolved later.
