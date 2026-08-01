@@ -26,7 +26,7 @@ Honor an explicit user pacing preference, but do not request one. Never hold bac
 
 Before asking anything:
 
-1. Inspect the available conversation, files, tools, and project context. Resolve discoverable facts yourself.
+1. Inspect the available conversation, files, tools, and project context. Before asking a question or presenting a recommendation, identify and verify every discoverable factual premise that could materially distinguish the options or change the recommendation. Resolve those facts yourself.
 2. Identify both stated and latent unresolved decisions. Infer prerequisites implied by the user's commitments even when the user did not list them. Map which later decisions and implementation steps depend on each one.
 3. Assess each decision qualitatively:
    - **Reversal cost:** effort, elapsed time, money, migration, reputation, or coordination needed to undo it.
@@ -38,6 +38,8 @@ Before asking anything:
 4. Reassess apparent one-way doors. Look for a pilot, feature flag, abstraction, versioning, time box, or staged rollout that makes them cheaper to reverse.
 
 Do not invent numeric scores or thresholds when the context does not support them. Use relative judgment and explain close calls.
+
+Treat this research as a mandatory precondition, not an optional follow-up. Never present a recommendation while a material premise remains unchecked in available context, files, tools, or authoritative sources. If a material fact is not accessible, state what was checked and ask only for that missing fact before asking the decision question; do not guess.
 
 ## Triage before interviewing
 
@@ -71,7 +73,7 @@ Count only decisions currently visible in the map. Do not claim a fixed total, p
 ## Run the interview
 
 1. Show the progress line.
-2. Find the ready frontier: unresolved **Ask now** decisions whose prerequisites are resolved. Order it by gravity.
+2. Find the ready frontier: unresolved **Ask now** decisions whose prerequisites are resolved and whose material discoverable premises have been verified. Investigate any unchecked premise before forming the question or recommendation. Order the ready frontier by gravity.
 3. Ask all mutually independent decisions from the ready frontier together. If only one decision is ready, ask it alone and wait before forming dependent questions.
 4. For each question, provide:
    - the decision in plain language;
