@@ -15,9 +15,9 @@ Treat uncertainty alone as insufficient. Prefer questions whose answers affect a
 
 ## Group questions adaptively
 
-Do not ask the user to choose between single-question and batch modes. Determine the grouping from the decision dependencies on every turn:
+Do not ask the user to choose between single-question and batch modes, and do not recommend a questioning mode. Determine the grouping from the decision dependencies on every turn:
 
-- Ask up to three currently ready **Ask now** decisions together when they are independent: none of their answers can eliminate, constrain, or reshape another question in the batch.
+- Ask every currently ready **Ask now** decision together when they are independent: none of their answers can eliminate, constrain, or reshape another question in the batch. Dependency safety, not a numeric batch limit, determines the grouping.
 - Ask one question alone when it is the only currently ready decision. This includes a prerequisite whose answer must be known before dependent questions can be formed.
 
 Honor an explicit user pacing preference, but do not request one. Never hold back a ready independent question merely to preserve a single-question rhythm, and never include a dependent question merely to fill a batch.
@@ -72,7 +72,7 @@ Count only decisions currently visible in the map. Do not claim a fixed total, p
 
 1. Show the progress line.
 2. Find the ready frontier: unresolved **Ask now** decisions whose prerequisites are resolved. Order it by gravity.
-3. Ask up to three mutually independent decisions from the ready frontier. If only one decision is ready, ask it alone and wait before forming dependent questions.
+3. Ask all mutually independent decisions from the ready frontier together. If only one decision is ready, ask it alone and wait before forming dependent questions.
 4. For each question, provide:
    - the decision in plain language;
    - the recommended answer and brief rationale;
